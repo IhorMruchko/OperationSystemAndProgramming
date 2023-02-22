@@ -5,6 +5,37 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	<UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\color.png" />
+    <None Remove="Resources\Images\font.png" />
+    <None Remove="Resources\Images\new.png" />
+    <None Remove="Resources\Images\notepad.png" />
+    <None Remove="Resources\Images\open.png" />
+    <None Remove="Resources\Images\save as.png" />
+    <None Remove="Resources\Images\save.png" />
+    <None Remove="Resources\Images\zoom-in.png" />
+    <None Remove="Resources\Images\zoom-out.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OperationSystemAndProgrammingLIB\OperationSystemAndProgrammingLIB.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\color.png" />
+    <Resource Include="Resources\Images\font.png" />
+    <Resource Include="Resources\Images\new.png" />
+    <Resource Include="Resources\Images\notepad.png" />
+    <Resource Include="Resources\Images\open.png" />
+    <Resource Include="Resources\Images\save as.png" />
+    <Resource Include="Resources\Images\save.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\zoom-in.png" />
+    <Resource Include="Resources\Images\zoom-out.png" />
+  </ItemGroup>
 
 </Project>

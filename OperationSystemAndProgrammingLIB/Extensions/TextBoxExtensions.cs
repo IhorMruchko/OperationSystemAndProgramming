@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using FontFamily = System.Windows.Media.FontFamily;
 using Color = System.Windows.Media.Color;
 using System.Windows.Media;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace OperationSystemAndProgrammingLIB.Extensions;
 
@@ -60,5 +61,15 @@ public static class TextBoxExtensions
                                                                color.R,
                                                                color.G,
                                                                color.B));
+    }
+
+    public static TextBox GenerateContent(this TextBox source, string text)
+    {
+        source.AcceptsTab = true;
+        source.AcceptsReturn = true;
+        source.IsReadOnly = true;
+        source.Text = text;
+        source.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+        return source;
     }
 }

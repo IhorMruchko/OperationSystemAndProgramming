@@ -1,0 +1,35 @@
+﻿<Window x:Class="FileDiagnosing.Dialogs.ChangeValueDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileDiagnosing.Dialogs"
+        mc:Ignorable="d"
+        Title="ChangeValueDialog" Height="300" Width="500"
+        WindowStartupLocation="CenterScreen"
+        Icon="..\Resources\Images\exchange.png"
+        FontFamily="Times New Roman"
+        FontSize="20">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Name="ValueDisplayerLabel"
+               Grid.Row="0"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"/>
+
+        <TextBox x:Name="ValueInputTextBox"
+                 Grid.Row="1"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 Text="0"
+                 TextChanged="ValueInputTextBox_TextChanged"/>
+
+        <Button Grid.Row="2"
+                Content="OK" Click="Button_Click"/>
+    </Grid>
+</Window>

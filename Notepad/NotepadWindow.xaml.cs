@@ -46,7 +46,7 @@ namespace Notepad
             set
             {
                 _savedTextHash = value;
-                Title = Constants.App.TITLE;
+                Title = Constants.App.NOTEPAD_TITLE;
             }
         }
 
@@ -116,8 +116,8 @@ namespace Notepad
         private void TextContainer_TextChanged(object sender, TextChangedEventArgs e)
         {
            Title = SavedTextHash.Equals(TextContainer.Text.GetHashCode()) 
-                ? Constants.App.TITLE
-                : Constants.App.TITLE_MODIFIED;
+                ? Constants.App.NOTEPAD_TITLE
+                : Constants.App.NOTEPAD_TITLE_MODIFIED;
         }
 
         private void InitializeEncoding()

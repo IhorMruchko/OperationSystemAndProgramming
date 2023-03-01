@@ -2,8 +2,14 @@
 
 namespace OperationSystemAndProgrammingLIB;
 
+/// <summary>
+/// Constatns for the OperationSystemAndProgramming WPF-libriary.
+/// </summary>
 public static class Constants
 {
+    /// <summary>
+    /// Contains file related constants.
+    /// </summary>
     public static class IO
     {
         public const int ACCEPTABLE_TITLE_LENGHT = 35;
@@ -18,9 +24,13 @@ public static class Constants
         
     }
 
+    /// <summary>
+    /// Contains project related constatns.
+    /// </summary>
     public static class App
     {
-        public const string TITLE = "Notepad--";
-        public const string TITLE_MODIFIED = "Notepad*";
+        public const string NOTEPAD_TITLE = "Notepad--";
+        public const string NOTEPAD_TITLE_MODIFIED = "Notepad*";
+        public const string FILE_DIAGNOSING_TITLE = "File diagnoser";
     }
 }

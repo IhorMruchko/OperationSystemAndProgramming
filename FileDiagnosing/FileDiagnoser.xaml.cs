@@ -150,7 +150,7 @@ public partial class FileDiagnoser : Window
         ResultViewerContentControl.Content = GenerateGridContent(result);
 
         _logger.AppendLine(Constants.Logging.LOG_FORMAT.Format(nameof(ShowAllPropertiesButton_Click),
-                                                               $"\n\t{"\n\t".Join(result.Select(p => $"{p.PropertyTitle} = {p.PropertyValue}"))}",
+                                                               $"\n\t{"\n\t".JoinString(result.Select(p => $"{p.PropertyTitle} = {p.PropertyValue}"))}",
                                                                DateTime.Now.ToString(Constants.Formats.DATE_TIME_FORMAT_TEXT)));
     }
 
@@ -162,10 +162,10 @@ public partial class FileDiagnoser : Window
     private void DisplayFileTextButton_Click(object sender, RoutedEventArgs e)
     {
         var result = File.ReadAllLines(CurrrentFilePath);
-        ResultViewerContentControl.Content = new TextBox().GenerateContent("\n".Join(result));
+        ResultViewerContentControl.Content = new TextBox().GenerateContent("\n".JoinString(result));
 
         _logger.AppendLine(Constants.Logging.LOG_FORMAT.Format(nameof(DisplayFileTextButton_Click),
-                                                               $"\n\t{"\n\t".Join(result)}",
+                                                               $"\n\t{"\n\t".JoinString(result)}",
                                                                DateTime.Now.ToString(Constants.Formats.DATE_TIME_FORMAT_TEXT)));
     }
 

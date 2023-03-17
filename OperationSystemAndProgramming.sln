@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileDiagnosing", "FileDiagn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatExecutor", "BatExecutor\BatExecutor.csproj", "{9202DBCB-9DD2-46CF-B660-18453BF6A7D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslatorLIB", "AssemblerLIB\TranslatorLIB.csproj", "{5D7F033E-4135-4263-8DDC-868778868AFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TranslatorLIB", "AssemblerLIB\TranslatorLIB.csproj", "{5D7F033E-4135-4263-8DDC-868778868AFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslatorLIB.Source", "TranslatorLIB.Source\TranslatorLIB.Source.csproj", "{048B153B-1A1A-4053-A08F-06153366FE6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F1EB3132-178D-4DD9-AF11-26332C30EFFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{5D7F033E-4135-4263-8DDC-868778868AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D7F033E-4135-4263-8DDC-868778868AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D7F033E-4135-4263-8DDC-868778868AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048B153B-1A1A-4053-A08F-06153366FE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048B153B-1A1A-4053-A08F-06153366FE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048B153B-1A1A-4053-A08F-06153366FE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048B153B-1A1A-4053-A08F-06153366FE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1EB3132-178D-4DD9-AF11-26332C30EFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1EB3132-178D-4DD9-AF11-26332C30EFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1EB3132-178D-4DD9-AF11-26332C30EFFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1EB3132-178D-4DD9-AF11-26332C30EFFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
 ﻿using OperationSystemAndProgrammingLIB;
-using OperationSystemAndProgrammingLIB.Extensions;
+using TranslatorLIB.Extensions;
 using OperationSystemAndProgrammingLIB.Helpers;
 using System.Diagnostics;
 

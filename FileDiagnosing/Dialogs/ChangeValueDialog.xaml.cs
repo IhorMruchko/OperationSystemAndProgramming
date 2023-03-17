@@ -1,4 +1,4 @@
-﻿using OperationSystemAndProgrammingLIB.Extensions;
+﻿using TranslatorLIB.Extensions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,7 +10,7 @@ namespace FileDiagnosing.Dialogs;
 public partial class ChangeValueDialog : Window
 {
     private string _previosValue = "0";
-    
+
     /// <summary>
     /// Initializate dialog with title on the header.
     /// </summary>
@@ -52,14 +52,14 @@ public partial class ChangeValueDialog : Window
             ValueInputTextBox.CaretIndex = _previosValue.Length;
             return;
         }
-        
+
         if (float.TryParse(ValueInputTextBox.Text, out _) == false)
         {
             ValueInputTextBox.Text = _previosValue;
             ValueInputTextBox.CaretIndex = _previosValue.Length;
             return;
         }
-        
+
         _previosValue = ValueInputTextBox.Text;
     }
 }

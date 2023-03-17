@@ -1,4 +1,4 @@
-﻿using OperationSystemAndProgrammingLIB.Extensions;
+﻿using TranslatorLIB.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;

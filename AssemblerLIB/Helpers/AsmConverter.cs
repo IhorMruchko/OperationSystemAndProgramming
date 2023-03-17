@@ -1,4 +1,4 @@
-﻿using OperationSystemAndProgrammingLIB.Extensions;
+﻿using TranslatorLIB.Extensions;
 using System.Text;
 using static System.Math;
 
@@ -78,5 +78,19 @@ public static class AsmConverter
         }
 
         return result;
+    }
+
+    public static string ExpandTo(string line, int bytes)
+    {
+        var normalizedLine = line.NormalizeStart(Constants.Converting.LEADING_ZEROES,
+                                                 bytes * Constants.Converting.BITS_IN_BYTE);
+        if (bytes == 2)
+        {
+            normalizedLine = string.Concat(normalizedLine.AsSpan(Constants.Converting.BITS_IN_BYTE, Constants.Converting.BITS_IN_BYTE),
+                                           normalizedLine.AsSpan(0, Constants.Converting.BITS_IN_BYTE));
+        }
+
+        return normalizedLine;
+
     }
 }

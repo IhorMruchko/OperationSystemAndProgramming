@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-using OperationSystemAndProgrammingLIB.Extensions;
+using TranslatorLIB.Extensions;
 using System;
 using System.IO;
 
@@ -11,7 +11,7 @@ internal class DialogBuilder : ITittleSetter,
 {
     private string _title = string.Empty;
     private string _path = string.Empty;
-    
+
     public IDirectorySetter SetTitle(string title)
     {
         if (title.Length > Constants.IO.ACCEPTABLE_TITLE_LENGHT)

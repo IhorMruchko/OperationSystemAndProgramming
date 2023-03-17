@@ -1,4 +1,4 @@
-﻿using OperationSystemAndProgrammingLIB.Extensions;
+﻿using TranslatorLIB.Extensions;
 
 namespace TranslatorLIB.Helpers;
 
@@ -15,5 +15,11 @@ public class CompileError : Exception
         => new(Constants.Errors.VARIABLE_NOT_FOUND.Format(variableName), lineNumber);
 
     public static CompileError WrongNumberFormat(string numberFormat)
-        => new CompileError(Constants.Errors.WRONG_NUMERIC_INPUT.Format(numberFormat), -1);
+        => new(Constants.Errors.WRONG_NUMERIC_INPUT.Format(numberFormat), -1);
+
+    public static CompileError RegisterNotFound(string registerValue)
+        => new(Constants.Errors.REGISTER_NOT_FOUND.Format(registerValue), -1);
+
+    public static CompileError SegmentRegisterNotFound(string segmentRegisterValue)
+        => new(Constants.Errors.SEGMENT_REGISTER_NOT_FOUND.Format(segmentRegisterValue), -1);
 }

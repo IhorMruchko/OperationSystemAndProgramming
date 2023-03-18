@@ -1,6 +1,6 @@
 ﻿namespace TranslatorLIB.Operands;
 
-public enum Operands : byte
+public enum OperandType : byte
 {
     RegisterOrMemory,
     Register,

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace ASMEngine
 {
     public class CompileError : Exception
@@ -54,7 +50,7 @@ namespace ASMEngine
             return new CompileError(Line, "No acceptable format found for operator : " + Name);
         }
 
-       
+
 
         public CompileError(int LineNumber, string Message)
         {

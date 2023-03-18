@@ -42,7 +42,7 @@ public class Address : Operand
         {
             HandleParts(parts[0], parts[1], parts[2]);
         }
-        OperandTypes.AddRange(new[] { Operands.RegisterOrMemory, Operands.Memory });
+        OperandTypes.AddRange(new[] { OperandType.RegisterOrMemory, OperandType.Memory });
     }
 
     internal override bool CanCreate(string possibleOperandValue)

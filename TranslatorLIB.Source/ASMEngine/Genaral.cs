@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace ASMEngine
 {
     public class Convertors
@@ -22,7 +18,7 @@ namespace ASMEngine
         public static string BaseRegisters = "BX,BP";
         public static string AddressRegisters = OffsetRegisters + "," + BaseRegisters;
         public static string SegmentRegisters = "ES,SS,DS,CS";
-      
+
         private static int base10 = 10;
         private static char[] cHexa = new char[] { 'A', 'B', 'C', 'D', 'E', 'F' };
         private static int[] iHexaNumeric = new int[] { 10, 11, 12, 13, 14, 15 };
@@ -138,7 +134,7 @@ namespace ASMEngine
                     res = 0;
                 else
                     throw CompileError.WrongNumericInput(line);
-                
+
             }
             return res;
         }

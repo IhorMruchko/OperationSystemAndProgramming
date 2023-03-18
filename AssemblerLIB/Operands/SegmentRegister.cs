@@ -12,7 +12,7 @@ public class SegmentRegister : Operand
     public SegmentRegister(string line)
     {
         SegmentRegister = GetCode(line.ToUpper());
-        OperandTypes.Add(Operands.SegmentRegister);
+        OperandTypes.Add(OperandType.SegmentRegister);
     }
 
     internal override bool CanCreate(string possibleOperandValue)

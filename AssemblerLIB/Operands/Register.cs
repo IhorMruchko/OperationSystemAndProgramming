@@ -15,10 +15,10 @@ public class Register : Operand
     }
 
     /// <summary>
-    /// Sets register operand type as <see cref="Operands.RegisterOrMemory"/> if <paramref name="isRegisterOnly"/> is <c>false</c>.
+    /// Sets register operand type as <see cref="OperandType.RegisterOrMemory"/> if <paramref name="isRegisterOnly"/> is <c>false</c>.
     /// </summary>
     /// <param name="line">Value to set in the register.</param>
-    /// <param name="isRegisterOnly">Defines is register type is <see cref="Operands.Register"/> only or also <see cref="Operands.RegisterOrMemory"/>.</param>
+    /// <param name="isRegisterOnly">Defines is register type is <see cref="OperandType.Register"/> only or also <see cref="OperandType.RegisterOrMemory"/>.</param>
     public Register(string line, bool isRegisterOnly)
     {
         InitRegister(line);
@@ -26,7 +26,7 @@ public class Register : Operand
         {
             RegisterOrMemory = Register;
             Mod = Constants.Register.MOD;
-            OperandTypes.Add(Operands.RegisterOrMemory);
+            OperandTypes.Add(OperandType.RegisterOrMemory);
         }
     }
     internal override bool CanCreate(string possibleOperandValue)
@@ -37,20 +37,20 @@ public class Register : Operand
     /// </summary>
     /// <param name="line">Value of the register.</param>
     /// <remarks>
-    /// If <paramref name="line"/> starts with <see cref="Constants.Register.A"/> adds <see cref="Operands.RegisterAx"/>. <br/>
-    /// If <paramref name="line"/> equals to <see cref="Constants.Register.CL"/> adds <see cref="Operands.RegisterCL"/>.
+    /// If <paramref name="line"/> starts with <see cref="Constants.Register.A"/> adds <see cref="OperandType.RegisterAx"/>. <br/>
+    /// If <paramref name="line"/> equals to <see cref="Constants.Register.CL"/> adds <see cref="OperandType.RegisterCL"/>.
     /// </remarks>
     private void InitRegister(string line)
     {
         (Register, W) = GetRegisterCode(line);
-        OperandTypes.Add(Operands.Register);
+        OperandTypes.Add(OperandType.Register);
         if (line.StartsWith(Constants.Register.A, StringComparison.InvariantCultureIgnoreCase))
         {
-            OperandTypes.Add(Operands.RegisterAx);
+            OperandTypes.Add(OperandType.RegisterAx);
         }
         if (line.Equals(Constants.Register.CL, StringComparison.InvariantCultureIgnoreCase))
         {
-            OperandTypes.Add(Operands.RegisterCL);
+            OperandTypes.Add(OperandType.RegisterCL);
         }
     }
 

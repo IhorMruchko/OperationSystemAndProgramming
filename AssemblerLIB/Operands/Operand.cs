@@ -50,7 +50,7 @@ public abstract class Operand
     /// <summary>
     /// Operand types that used in the command.
     /// </summary>
-    internal List<Operands> OperandTypes { get; set; } = new List<Operands>();
+    internal List<OperandType> OperandTypes { get; set; } = new List<OperandType>();
 
     /// <summary>
     /// Defines weather operand can be created.

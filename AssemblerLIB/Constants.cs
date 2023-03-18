@@ -14,6 +14,15 @@ public static class Constants
         public const string SEGMENT_REGISTER_DEFAULT = "sreg";
     }
 
+    public static class Format
+    {
+        public const string D = "d";
+        public const string D_VALUE = "1";
+        public const string COND = "cond";
+        public const string COND_VALUE = "y";
+        public const string S_VAlUE = "0";
+    }
+
     public static class Errors
     {
         public const string VARIABLE_NOT_FOUND = "There is no such a variable as [{0}].";

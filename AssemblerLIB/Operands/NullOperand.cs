@@ -7,7 +7,7 @@ public class NullOperand : Operand
 {
     public NullOperand(string line)
     {
-        OperandTypes.Add(Operands.None);
+        OperandTypes.Add(OperandType.None);
     }
 
     internal override bool CanCreate(string possibleOperandValue)

@@ -23,8 +23,8 @@ public class Constant : Operand
     /// </summary>
     /// <param name="line">Value of the constant.</param>
     /// <param name="bytes">Defines type of operand. <br/>
-    /// if <paramref name="bytes"/> = 1 sets <see cref="Operands.Immediate8"/>; <br/>
-    /// if <paramref name="bytes"/> = 2 sets <see cref="Operands.Immediate16"/>.
+    /// if <paramref name="bytes"/> = 1 sets <see cref="OperandType.Immediate8"/>; <br/>
+    /// if <paramref name="bytes"/> = 2 sets <see cref="OperandType.Immediate16"/>.
     /// </param>
     public Constant(string line, int bytes)
     {
@@ -40,7 +40,7 @@ public class Constant : Operand
                                      Constants.Converting.TWO_BITS);
 
         OperandTypes.Add(Im8.Length <= 8 && bytes == Constants.Converting.BIT
-            ? Operands.Immediate8
-            : Operands.Immediate16);
+            ? OperandType.Immediate8
+            : OperandType.Immediate16);
     }
 }

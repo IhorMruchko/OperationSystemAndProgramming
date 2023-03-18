@@ -12,11 +12,6 @@ namespace Tests.TranslatorLIB;
 
 public class OperandsTesting
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     [TestCase("\"\"", false)]
     [TestCase("\"1\"", true)]

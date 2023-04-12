@@ -1,9 +1,11 @@
-﻿using CombinatoricsCompiler.Services;
+﻿using CombinatoricsCompiler.Compilation;
+using CombinatoricsCompiler.Services;
 
 while (Inputs.Input(">>>") != "e")
 {
-    if (int.TryParse(Inputs.LastInput, out var result))
-    {
-        Console.WriteLine(Combinatorics.Permutations(result));
-    }
+    var compiler = new Compiler();
+    if (Inputs.LastInput?.Equals("cls", StringComparison.InvariantCultureIgnoreCase) ?? false)
+        Console.Clear();
+    else
+        Console.WriteLine(compiler.Compile(Inputs.LastInput));
 }

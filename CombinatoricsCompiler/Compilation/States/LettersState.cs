@@ -1,4 +1,7 @@
-﻿namespace CombinatoricsCompiler.Compilation.States;
+﻿using CombinatoricsCompiler.Exceptions;
+using CombinatoricsCompiler.Extensions;
+
+namespace CombinatoricsCompiler.Compilation.States;
 
 internal class LettersState : CompilationState
 {
@@ -6,11 +9,14 @@ internal class LettersState : CompilationState
     {
     }
 
-    // TODO: accept only '(',
+    public override string Evaluate() 
+        => throw new UnexpectedSymbolException('\0');
+
     // TODO: after accepting change to the proper function (Sf, H, P, A, C)
     // TODO: decline another values, except whitespace.
     protected override void InitTransitions()
     {
-        throw new NotImplementedException();
+        Transitions.Adds(Constants.Transitions.IsLetter,
+            (Constants.Transitions.Predicates.IsNumber, Constants.Transitions.Updates.ToOperatorState));
     }
 }

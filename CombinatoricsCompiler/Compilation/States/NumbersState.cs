@@ -1,4 +1,6 @@
-﻿namespace CombinatoricsCompiler.Compilation.States;
+﻿using CombinatoricsCompiler.Extensions;
+
+namespace CombinatoricsCompiler.Compilation.States;
 
 internal class NumbersState : CompilationState
 {
@@ -6,10 +8,13 @@ internal class NumbersState : CompilationState
     {
     }
 
-    // TODO: provide error on letter
-    // TODO: if sign #, $, ! appears, change state to the needed factorial
-    protected override void InitTransitions()
-    {
-        throw new NotImplementedException();
-    }
+    public override string Evaluate() 
+        => Source.Number;
+
+    protected override void InitTransitions() 
+        => Transitions.Adds(Constants.Transitions.AddNumbers,
+                            Constants.Transitions.IsFactorial,
+                            Constants.Transitions.IsPrimeFactorial,
+                            Constants.Transitions.IsExponentialFactorial,
+                            Constants.Transitions.EndOfParsing);
 }

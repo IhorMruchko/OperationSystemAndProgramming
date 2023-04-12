@@ -1,9 +1,7 @@
-﻿namespace CombinatoricsCompiler.Compilation.States;
+﻿using CombinatoricsCompiler.Exceptions;
 
-// TODO: provide proper states.
-// TODO: add state of number appears.
-// TODO: add state of letter appears.
-// TODO: add state of sub factorial appears. 
+namespace CombinatoricsCompiler.Compilation.States;
+
 public abstract class CompilationState
 {
     protected Compiler Source { get; set; }
@@ -17,23 +15,22 @@ public abstract class CompilationState
         Transitions = new()
         {
             Constants.Transitions.IsWhiteSpace,
-            Constants.Transitions.IsNumber,
-            Constants.Transitions.IsLetter
         };
         InitTransitions();
     }
+    public abstract string Evaluate();
 
-    public bool AcceptLetter(char v)
+    public void AcceptLetter(char v)
     {
         foreach(var (validation, updater) in Transitions)
         {
             if (validation(v) == true)
             {
                 updater(v, Source);
-                return true;
+                return;
             }
         }
-        return false;
+        throw new UnexpectedSymbolException(v);
     }
 
     protected abstract void InitTransitions();

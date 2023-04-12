@@ -1,4 +1,7 @@
-﻿namespace CombinatoricsCompiler.Compilation.States
+﻿using CombinatoricsCompiler.Extensions;
+using CombinatoricsCompiler.Services;
+
+namespace CombinatoricsCompiler.Compilation.States
 {
     internal class FactorialState : CompilationState
     {
@@ -6,12 +9,10 @@
         {
         }
 
+        public override string Evaluate() 
+            => Factorials.Factorial(long.Parse(Source.Number)).ToString();
+
         protected override void InitTransitions()
-        {
-            Transitions = new List<(Predicate<char> validation, Action<char, Compiler> updater)>()
-            {
-                Constants.Transitions.IsWhiteSpace,
-            };
-        }
+            => Transitions.Adds(Constants.Transitions.IsDoubleFactorial);
     }
 }

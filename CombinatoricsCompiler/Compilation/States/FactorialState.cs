@@ -11,8 +11,7 @@
             Transitions = new List<(Predicate<char> validation, Action<char, Compiler> updater)>()
             {
                 Constants.Transitions.IsWhiteSpace,
-                (c => c.IsFactorial(), (c, compiler) => {compiler.ChangeState(new DoubleFactoru)})
-            }
+            };
         }
     }
 }

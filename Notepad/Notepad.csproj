@@ -19,9 +19,7 @@
     <Resource Include="Resources\Images\notepad.png" />
     <Resource Include="Resources\Images\open.png" />
     <Resource Include="Resources\Images\save as.png" />
-    <Resource Include="Resources\Images\save.png">
-      <CopyToOutputDirectory></CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Resources\Images\save.png"/>
     <Resource Include="Resources\Images\zoom-in.png" />
     <Resource Include="Resources\Images\zoom-out.png" />
   </ItemGroup>

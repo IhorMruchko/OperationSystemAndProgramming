@@ -20,7 +20,5 @@ internal class MoveMenuOperation : MenuOperation
     }
 
     public override bool IsKeyPressed(KeyEventArgs args)
-        => Keyboard.IsKeyDown(Key.LeftCtrl)
-        && Keyboard.IsKeyDown(Key.LeftShift)
-        && Keyboard.IsKeyDown(Key.M);
+        => Keyboard.IsKeyDown(Key.M);
 }

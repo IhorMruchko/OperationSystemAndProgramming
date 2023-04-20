@@ -55,7 +55,7 @@ public static class CanvasExtension
 
         Canvas.SetLeft(element, validator.NextPosition.X);
         Canvas.SetTop(element, validator.NextPosition.Y);
-        
+
         return currentPositon;
     }
 }

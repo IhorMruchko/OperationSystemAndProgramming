@@ -1,44 +1,44 @@
-﻿using System.Windows;
+﻿using Graphics.Commands;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 
 namespace Graphics.Tools;
 
 internal class DrawElipseTool : Tool
-{
-    private Ellipse? _ellipse;
-    
+{    
     protected override void OnMouseDown(MainWindow source, MouseEventArgs args)
     {
         PreviousMousePosition = args.GetPosition(source.PaintingCanvas);
-        _ellipse = new Ellipse()
+        Target = new Ellipse()
         {
             Stroke = source.Properties.Forecolor,
             StrokeThickness = source.Properties.LineSize,
             Fill = source.Properties.FillColor,
         };
-        Canvas.SetLeft(_ellipse, PreviousMousePosition.X);
-        Canvas.SetTop(_ellipse, PreviousMousePosition.Y);
-        source.PaintingCanvas.Children.Add(_ellipse);
+        Canvas.SetLeft(Target, PreviousMousePosition.X);
+        Canvas.SetTop(Target, PreviousMousePosition.Y);
+        source.PaintingCanvas.Children.Add(Target);
     }
 
     protected override void OnMouseMove(MainWindow source, MouseEventArgs args)
     {
-        if (_ellipse is null) return;
+        if (Target is null || Target is not Ellipse ellipse) return;
 
         var currentMousePosition = args.GetPosition(source.PaintingCanvas);
         var (width, height) = GetSizes(currentMousePosition);
         
-        Canvas.SetLeft(_ellipse, Min(PreviousMousePosition.X, currentMousePosition.X));
-        Canvas.SetTop(_ellipse, Min(PreviousMousePosition.Y, currentMousePosition.Y));
+        Canvas.SetLeft(Target, Min(PreviousMousePosition.X, currentMousePosition.X));
+        Canvas.SetTop(Target, Min(PreviousMousePosition.Y, currentMousePosition.Y));
 
-        _ellipse.Width = width;
-        _ellipse.Height = height;
+        ellipse.Width = width;
+        ellipse.Height = height;
     }
 
     protected override void OnMouseUp(MainWindow source, MouseEventArgs args)
     {
-        _ellipse = null;
+        source.Actions.Add(new AddPaintingAction(source, Target, Canvas.GetLeft(Target), Canvas.GetTop(Target)));
+        Target = null;
     }
 
     private (double, double) GetSizes(Point currentMousePosition)

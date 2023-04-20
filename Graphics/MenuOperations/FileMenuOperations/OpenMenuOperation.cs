@@ -19,8 +19,11 @@ internal class OpenMenuOperation : MenuOperation
 
     public override void HandleEvent(MainWindow source)
     {
-        if (source.IsChangesMade && Messages.ChangesMadeMessage == MessageBoxResult.OK)
+        if (source.IsChangesMade && Messages.ChangesMadeMessage == MessageBoxResult.Yes)
             new SaveMenuOperation().HandleEvent(source);
+
+        if (Messages.LastResult == MessageBoxResult.Cancel)
+            return;
 
         var openFileDialog = new OpenFileDialog()
         {

@@ -1,4 +1,5 @@
-﻿using Graphics.Extensions;
+﻿using Graphics.Commands;
+using Graphics.Extensions;
 using Microsoft.Win32;
 
 namespace Graphics.MenuOperations.FileMenuOperations;
@@ -17,7 +18,7 @@ internal class AddMenuOperation : MenuOperation
 
     public override void HandleEvent(MainWindow source)
     {
-        if (source.OpennedFile is null)
+        if (source.OpennedFile is null != source.IsChangesMade)
         {
             new OpenMenuOperation().HandleEvent(source);
             return;
@@ -30,7 +31,7 @@ internal class AddMenuOperation : MenuOperation
         if (openFileDialog.ShowDialog() == true)
         {
             source.PaintingCanvas.LoadImage(openFileDialog.FileName);
-            source.IsChangesMade = true;
+            source.Actions.Add(new AddPaintingAction(source, source.PaintingCanvas.Children[^1], 0, 0));
         }
     }
 

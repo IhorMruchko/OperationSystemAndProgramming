@@ -18,8 +18,14 @@ internal class NewMenuOperation : MenuOperation
 
     public override void HandleEvent(MainWindow source)
     {
-        if (source.IsChangesMade && Messages.ChangesMadeMessage == MessageBoxResult.OK)
+        if (source.IsChangesMade && Messages.ChangesMadeMessage == MessageBoxResult.Yes)
+        {
             new SaveMenuOperation().HandleEvent(source);
+            return;
+        }
+
+        if (Messages.LastResult == MessageBoxResult.Cancel)
+            return;
 
         source.PaintingCanvas.Clear();
         source.OpennedFile = null;

@@ -17,10 +17,16 @@ internal class ExitMenuOperation : MenuOperation
 
     public override void HandleEvent(MainWindow source)
     {
-        if (source.IsChangesMade && Messages.ChangesMadeMessage == MessageBoxResult.OK)
+        if (source.IsChangesMade && Messages.ChangesMadeMessage == MessageBoxResult.Yes)
+        {
             new SaveMenuOperation().HandleEvent(source);
-        
-        Application.Current.Shutdown();
+            return;
+        }
+
+        if (Messages.LastResult == MessageBoxResult.Cancel)
+        {
+            return;
+        }
     }
 
     public override bool IsKeyPressed(KeyEventArgs args)

@@ -1,5 +1,4 @@
 ﻿using Graphics.Tools;
-using System.Diagnostics;
 
 namespace Graphics.MenuOperations.ToolsMenuOperations;
 
@@ -21,7 +20,5 @@ internal class DrawLineMenuOperation : MenuOperation
     }
 
     public override bool IsKeyPressed(KeyEventArgs args)
-        => Keyboard.IsKeyDown(Key.LeftCtrl)
-        && Keyboard.IsKeyDown(Key.LeftShift)
-        && Keyboard.IsKeyDown(Key.L);
+        => Keyboard.IsKeyDown(Key.L);
 }

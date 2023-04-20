@@ -4,6 +4,7 @@ global using System.Windows.Input;
 global using System.IO;
 global using static System.Math;
 using System.Windows.Media;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace Graphics;
 
@@ -30,7 +31,14 @@ public static class Constants
                 private const string SAVE_ICON = "save.png";
                 private const string EXIT_ICON = "exit.png";
 
+                private const string UNDO_ICON = "undo.png";
+                private const string REDO_ICON = "redo.png";
+
+                private const string COPY_ICON = "copy.png";
+                private const string PASTE_ICON = "paste.png";
+
                 private const string MOVE_ICON = "move.png";
+                private const string SELECT_ICON = "select.png";
                 private const string LINE_ICON = "line.png";
                 private const string ELLIPSE_ICON = "ellipse.png";
                 private const string RECTANGLE_ICON = "rectangle.png";
@@ -53,6 +61,12 @@ public static class Constants
                 public static readonly string FillColorIcon = Path.Combine(CurrentDirectory, ICONS_DIR, FILL_COLOR_ICON);
                 public static readonly string ThicknessColorIcon = Path.Combine(CurrentDirectory, ICONS_DIR, THICKNESS_ICON);
                 public static readonly string ExitIcon = Path.Combine(CurrentDirectory, ICONS_DIR, EXIT_ICON);
+                public static readonly string UndoIcon = Path.Combine(CurrentDirectory, ICONS_DIR, UNDO_ICON);
+                public static readonly string RedoIcon = Path.Combine(CurrentDirectory, ICONS_DIR, REDO_ICON);
+                public static readonly string CopyIcon = Path.Combine(CurrentDirectory, ICONS_DIR, COPY_ICON);
+                public static readonly string PasteIcon = Path.Combine(CurrentDirectory, ICONS_DIR, PASTE_ICON);
+                public static readonly string SelectIcon = Path.Combine(CurrentDirectory, ICONS_DIR, SELECT_ICON);
+
 
             }
         }
@@ -77,8 +91,13 @@ public static class Constants
             public const string DELETE = "Delete";
             public const string SELECT_ALL = "Select all";
 
+            public const string ACTIONS = "Actions";
+            public const string UNDO = "Undo";
+            public const string REDO = "Redo";
+
             public const string TOOLS = "Tools";
             public const string MOVER = "Move";
+            public const string SELECT = "Select";
             public const string LINE = "Line";
             public const string ELLIPSE = "Ellipse";
             public const string RECTANGLE = "Rectangle";
@@ -107,13 +126,19 @@ public static class Constants
             public const int DELETE = 4;
             public const int SELECT_ALL = 5;
 
-            public const int TOOLS = 3;
-            public const int MOVER = 0;
-            public const int LINE = 1;
-            public const int ELLIPSE = 2;
-            public const int RECTANGLE = 3;
+            public const int ACTIONS = 3;
+            public const int UNDO = 1;
+            public const int REDO = 2;
 
-            public const int PROPERTIES = 4;
+
+            public const int TOOLS = 4;
+            public const int MOVER = 0;
+            public const int SELECT = 1;
+            public const int LINE = 2;
+            public const int ELLIPSE = 3;
+            public const int RECTANGLE = 4;
+
+            public const int PROPERTIES = 5;
             public const int LINE_COLOR = 1;
             public const int FILL_COLOR = 2;
             public const int THICKNESS = 3;
@@ -126,7 +151,6 @@ public static class Constants
             public const string ADD = "Ctrl + O";
             public const string OPEN = "Ctrl + Shift + O";
             public const string SAVE = "Ctrl + S";
-            public const string SAVE_AS = "Ctrl + Shift + S";
             public const string EXIT = "Ctrl + E";
 
             public const string EDIT = "";
@@ -136,11 +160,16 @@ public static class Constants
             public const string DELETE = "del";
             public const string SELECT_ALL = "Ctrl + A";
 
+            public const string ACTIONS = "";
+            public const string UNDO = "Ctrl + Z";
+            public const string REDO = "Ctrl + Y";
+
             public const string TOOLS = "";
-            public const string MOVER = "Ctrl + Shift + M";
-            public const string LINE = "Ctrl + Shift + L";
-            public const string ELLIPSE = "Ctrl + Shift + E";
-            public const string RECTANGLE = "Ctrl + Shift + R";
+            public const string MOVER = "M";
+            public const string SELECT = "S";
+            public const string LINE = "L";
+            public const string ELLIPSE = "E";
+            public const string RECTANGLE = "R";
 
             public const string PROPERTIES = "";
             public const string LINE_COLOR = "Ctrl + L + C";

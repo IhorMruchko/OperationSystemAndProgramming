@@ -20,7 +20,5 @@ internal class DrawRectangleMenuOperation : MenuOperation
     }
 
     public override bool IsKeyPressed(KeyEventArgs args)
-        => Keyboard.IsKeyDown(Key.LeftCtrl)
-        && Keyboard.IsKeyDown(Key.LeftShift)
-        && Keyboard.IsKeyDown(Key.R);
+        => Keyboard.IsKeyDown(Key.R);
 }

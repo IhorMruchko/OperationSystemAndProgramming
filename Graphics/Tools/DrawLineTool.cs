@@ -1,20 +1,16 @@
-﻿using System.Diagnostics;
-using System.Net;
+﻿using Graphics.Commands;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace Graphics.Tools;
 
 internal class DrawLineTool : Tool
-{
-    private Line? _line;
-    
+{  
     protected override void OnMouseDown(MainWindow source, MouseEventArgs args)
     {
         PreviousMousePosition = args.GetPosition(source.PaintingCanvas);
-        _line = new Line()
+        Target = new Line()
         {
             X1 = PreviousMousePosition.X,
             X2 = PreviousMousePosition.X,
@@ -23,27 +19,28 @@ internal class DrawLineTool : Tool
             Stroke = source.Properties.Forecolor,
             StrokeThickness = source.Properties.LineSize
         };
-        source.PaintingCanvas.Children.Add(_line);
+        source.PaintingCanvas.Children.Add(Target);
     }
 
     protected override void OnMouseMove(MainWindow source, MouseEventArgs args)
     {
-        if (_line is null) return;
+        if (Target is null || Target is not Line line) return;
 
         var currentPosition = args.GetPosition(source.PaintingCanvas);
         if (Keyboard.IsKeyDown(Key.LeftShift))
         {
             currentPosition = MakeDirrectLine(currentPosition);
         }
-        _line.X2 = currentPosition.X;
-        _line.Y2 = currentPosition.Y;
+        line.X2 = currentPosition.X;
+        line.Y2 = currentPosition.Y;
     }
 
     protected override void OnMouseUp(MainWindow source, MouseEventArgs args)
     {
-        Canvas.SetLeft(_line, PreviousMousePosition.X);
-        Canvas.SetTop(_line, PreviousMousePosition.Y);
-        _line = null;
+        Canvas.SetLeft(Target, PreviousMousePosition.X);
+        Canvas.SetTop(Target, PreviousMousePosition.Y);
+        source.Actions.Add(new AddPaintingAction(source, Target, Canvas.GetLeft(Target), Canvas.GetTop(Target)));
+        Target = null;
     }
 
     private Point MakeDirrectLine(Point currentPosition)

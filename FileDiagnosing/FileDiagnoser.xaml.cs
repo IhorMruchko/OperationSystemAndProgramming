@@ -1,6 +1,7 @@
 ﻿using FileDiagnosing.Dialogs;
 using FileDiagnosing.PropertyProviders;
 using OperationSystemAndProgrammingLIB.Extensions;
+using TranslatorLIB.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ public partial class FileDiagnoser : Window
         Constants.IO.CURRENT_DIRRECTORY,
         Constants.IO.PROBLEM_FOLDER_DIRECTORY
     };
-    
+
     public FileDiagnoser()
     {
         InitializeComponent();
@@ -81,7 +82,7 @@ public partial class FileDiagnoser : Window
     /// <param name="isEnabled">Defines is buttons are enabled or disabled.</param>
     private void ChangeButtonEnability(bool isEnabled = false)
     {
-        foreach(var button in ButtonsContainer.Children.OfType<Button>())
+        foreach (var button in ButtonsContainer.Children.OfType<Button>())
             button.IsEnabled = isEnabled;
     }
 
@@ -118,7 +119,7 @@ public partial class FileDiagnoser : Window
     {
         var result = FileSelectorComboBox.Items[FileSelectorComboBox.SelectedIndex];
         ResultViewerContentControl.Content = new TextBox().GenerateContent(result.ToString()!);
-        
+
         _logger.AppendLine(Constants.Logging.LOG_FORMAT.Format(nameof(ShowFileNameButton_Click),
                                                                result,
                                                                DateTime.Now.ToString(Constants.Formats.DATE_TIME_FORMAT_TEXT)));
@@ -227,19 +228,19 @@ public partial class FileDiagnoser : Window
         for (var i = 0; i < properties.Count; ++i)
         {
             grid.RowDefinitions.Add(new RowDefinition());
-            
+
             var label = new Label().GenerateContent(properties[i].PropertyTitle);
             var textBox = new TextBox()
             {
                 HorizontalContentAlignment = HorizontalAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center
             }.GenerateContent(properties[i].PropertyValue);
-            
+
             Grid.SetColumn(label, 0);
             Grid.SetRow(label, i);
             Grid.SetColumn(textBox, 1);
             Grid.SetRow(textBox, i);
-            
+
             grid.Children.Add(label);
             grid.Children.Add(textBox);
         }
@@ -260,12 +261,12 @@ public partial class FileDiagnoser : Window
         var grid = new Grid();
         grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
         grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(4, GridUnitType.Star) });
-        
+
         var label = new Label().GenerateContent(Constants.Formats.TOTAL_SUM_FORMAT.Format(totalFileSum));
         var textBox = new TextBox().GenerateContent(changes);
-        
+
         Grid.SetRow(textBox, 1);
-        
+
         grid.Children.Add(label);
         grid.Children.Add(textBox);
         return grid;
@@ -282,7 +283,7 @@ public partial class FileDiagnoser : Window
         var sum = .0f;
         var changedValuesBuilder = new StringBuilder();
         var skipedInLine = 0;
-        for(var lineNumber = 0; lineNumber < values.Length; ++lineNumber)
+        for (var lineNumber = 0; lineNumber < values.Length; ++lineNumber)
         {
             for (var positionNumber = 0; positionNumber < values[lineNumber].Length; ++positionNumber)
             {
@@ -304,7 +305,7 @@ public partial class FileDiagnoser : Window
                                                                                                   changed,
                                                                                                   lineNumber + 1,
                                                                                                   positionNumber + 1 - skipedInLine));
-                } 
+                }
             }
             skipedInLine = 0;
         }

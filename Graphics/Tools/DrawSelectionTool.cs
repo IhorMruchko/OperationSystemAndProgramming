@@ -12,6 +12,7 @@ internal class DrawSelectionTool : DrawRectangleTool
         if (Target is not Rectangle rectangle) return;
         
         rectangle.Stroke = Brushes.LightBlue;
+        rectangle.StrokeThickness = 2;
         rectangle.Fill = Brushes.Transparent;
         rectangle.StrokeDashArray = new DoubleCollection(new double[] { 4, 2 });
     }

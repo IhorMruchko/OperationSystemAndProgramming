@@ -51,7 +51,7 @@ public abstract class Tool
 
     protected abstract void OnMouseUp(MainWindow source, MouseEventArgs args);
 
-    private void Cancel(MainWindow source)
+    protected virtual void Cancel(MainWindow source)
     {
         source.PaintingCanvas.Children.Remove(Target);
         PreviousMousePosition = new Point();

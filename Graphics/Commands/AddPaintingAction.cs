@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Graphics.Extensions;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Graphics.Commands;

@@ -10,7 +10,6 @@ internal class MoveTool : Tool
     protected override void OnMouseDown(MainWindow source, MouseEventArgs args)
     {
         if (args.OriginalSource is not UIElement target 
-            || target == source.CanvasBackGround 
             || target == source.Selection)
             return;
         Target = target;

@@ -31,6 +31,7 @@ internal class AddMenuOperation : MenuOperation
         if (openFileDialog.ShowDialog() == true)
         {
             source.PaintingCanvas.LoadImage(openFileDialog.FileName);
+            source.UpdateScrollBar();
             source.Actions.Add(new AddPaintingAction(source, source.PaintingCanvas.Children[^1], 0, 0));
         }
     }

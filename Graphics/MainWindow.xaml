@@ -10,22 +10,22 @@
         FontFamily="Cascadia code"
         FontSize="14"
         KeyDown="Window_KeyDown"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        SizeChanged="Window_SizeChanged">
     <DockPanel>
         <Menu x:Name="OperationsMenu"
               DockPanel.Dock="Top"
               FontFamily="Cascadia code"
               FontSize="14"/>
 
-        <ScrollViewer>
+        <ScrollViewer x:Name="ScrollBar"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto">
             <Canvas x:Name="PaintingCanvas"
-                MouseDown="PaintingCanvas_MouseDown"
-                MouseUp="PaintingCanvas_MouseUp"
-                MouseMove="PaintingCanvas_MouseMove">
-                <Rectangle x:Name="CanvasBackGround"
-                       Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Canvas}}"
-                       Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Canvas}}"
-                       Fill="White"/>
+                    MouseDown="PaintingCanvas_MouseDown"
+                    MouseUp="PaintingCanvas_MouseUp"
+                    MouseMove="PaintingCanvas_MouseMove"
+                    Background="White">
             </Canvas>
         </ScrollViewer>
     </DockPanel>

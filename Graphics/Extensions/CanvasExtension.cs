@@ -40,9 +40,7 @@ public static class CanvasExtension
 
     public static void Clear(this Canvas canvas)
     {
-        if (canvas.Children[0] is not Rectangle background) return;
         canvas.Children.Clear();
-        canvas.Children.Add(background);
     }
 
     public static Point Move(this Canvas canvas, UIElement element, MouseEventArgs args, Point previousMousePositon)

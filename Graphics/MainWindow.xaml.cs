@@ -3,7 +3,9 @@ using Graphics.MenuOperations;
 using Graphics.MenuOperations.FileMenuOperations;
 using Graphics.Objects;
 using Graphics.Tools;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Shapes;
 
 namespace Graphics;
@@ -41,6 +43,14 @@ public partial class MainWindow : Window
         Actions.ChangesUndo += Actions_ChangesUndo;
     }
 
+    public void UpdateScrollBar(SizeChangedEventArgs? e = null)
+    {
+        if (PaintingCanvas.Children.Count == 0) return;
+
+        PaintingCanvas.Width = Max(PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetLeft(element) + element.ActualWidth), e?.NewSize.Width ?? Width);
+        PaintingCanvas.Height = Max(PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetTop(element) + element.ActualHeight), e?.NewSize.Height ?? Height);
+    }
+
     private void Window_KeyDown(object sender, KeyEventArgs e)
     {
         CurrentTool?.KeyDownEventHandler(this, e);
@@ -66,5 +76,10 @@ public partial class MainWindow : Window
         {
             e.Cancel = true;
         }
+    }
+
+    private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        UpdateScrollBar(e);
     }
 }

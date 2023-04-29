@@ -32,7 +32,7 @@ internal class MoveTool : Tool
 
     protected override void OnMouseUp(MainWindow source, MouseEventArgs args)
     {
-        if (Target is null) return;
+        if (Target is null || Target is Canvas) return;
         source.Actions.Add(new MovePaintingAction(source, Target, StartMousePosition, new Point(Canvas.GetLeft(Target), Canvas.GetTop(Target))));
         Target = null;
     }

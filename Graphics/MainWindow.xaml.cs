@@ -3,6 +3,7 @@ using Graphics.MenuOperations;
 using Graphics.MenuOperations.FileMenuOperations;
 using Graphics.Objects;
 using Graphics.Tools;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +24,6 @@ public partial class MainWindow : Window
             }    
         }
     }
-    
-    public string? OpennedFile { get; set; }
 
     public Tool? CurrentTool { get; set; } = new MoveTool();
 
@@ -39,22 +38,35 @@ public partial class MainWindow : Window
         InitializeComponent();
         Title = Constants.TITLE;
         MenuOperationManager.CreateMenu(ref OperationsMenu, this);
-        Actions.ChangesMade += Actions_ChangesMange;
+        Actions.ChangesMade += Actions_ChangesMade;
         Actions.ChangesUndo += Actions_ChangesUndo;
+        Actions.ChangeUndo += Actions_ChangeUndo;
     }
+
+    private void Actions_ChangeUndo()
+        => UpdateScrollBar();
 
     public void UpdateScrollBar(SizeChangedEventArgs? e = null)
     {
-        if (PaintingCanvas.Children.Count == 0) return;
+        if (PaintingCanvas.Children.Count == 0)
+        {
+            PaintingCanvas.Width = double.NaN;
+            PaintingCanvas.Height = double.NaN;
+            return;
+        }
 
-        PaintingCanvas.Width = Max(PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetLeft(element) + element.ActualWidth), e?.NewSize.Width ?? Width);
-        PaintingCanvas.Height = Max(PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetTop(element) + element.ActualHeight), e?.NewSize.Height ?? Height);
+        var (width, height) = e is null ? (ActualWidth, ActualHeight - OperationsMenu.ActualHeight) : (e.NewSize.Width, e.NewSize.Height - OperationsMenu.ActualHeight);
+        var (maxWidth, maxHeight) = (PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetLeft(element) + element.ActualWidth),
+            PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetTop(element) + element.ActualHeight));
+
+        PaintingCanvas.Width = maxWidth < width ? double.NaN : maxWidth;
+        PaintingCanvas.Height = maxHeight < height ? double.NaN : maxHeight;
     }
 
     private void Window_KeyDown(object sender, KeyEventArgs e)
     {
         CurrentTool?.KeyDownEventHandler(this, e);
-        MenuOperationManager.HandleEvent(this, e);
+        MenuOperationManager.HandleEvent(this);
     }
 
     private void PaintingCanvas_MouseDown(object sender, MouseButtonEventArgs e)
@@ -65,9 +77,14 @@ public partial class MainWindow : Window
 
     private void PaintingCanvas_MouseMove(object sender, MouseEventArgs e) 
         => CurrentTool?.MouseMoveEventHandler(this, e);
-    private void Actions_ChangesUndo() => Title = Constants.TITLE;
+    private void Actions_ChangesUndo() 
+        => Title = Constants.TITLE;
 
-    private void Actions_ChangesMange() => Title = Constants.TITLE_EDIT;
+    private void Actions_ChangesMade()
+    {
+        Title = Constants.TITLE_EDIT;
+        UpdateScrollBar();
+    }
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
@@ -76,10 +93,9 @@ public partial class MainWindow : Window
         {
             e.Cancel = true;
         }
+        Messages.LastResult = MessageBoxResult.None;
     }
 
-    private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        UpdateScrollBar(e);
-    }
+    private void Window_SizeChanged(object sender, SizeChangedEventArgs e) 
+        => UpdateScrollBar(e);
 }

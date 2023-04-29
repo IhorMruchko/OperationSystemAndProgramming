@@ -5,15 +5,9 @@ namespace Graphics.MenuOperations.FileMenuOperations;
 
 internal class ExitMenuOperation : MenuOperation
 {
-    public override string Name => Constants.MenuOperationsSettings.Names.EXIT;
-
-    public override string InputGestureText => Constants.MenuOperationsSettings.Keys.EXIT;
-
-    public override string IconFileSource => Constants.IO.Images.Icons.ExitIcon;
-
     public override int DisplayOrder => Constants.MenuOperationsSettings.Orders.EXIT;
 
-    public override List<MenuOperation> GroupOperations => new();
+    public override Key[] KeyBind => new[] { Key.LeftCtrl, Key.E };
 
     public override void HandleEvent(MainWindow source)
     {
@@ -25,11 +19,15 @@ internal class ExitMenuOperation : MenuOperation
 
         if (Messages.LastResult == MessageBoxResult.Cancel)
         {
+            Messages.LastResult = MessageBoxResult.None;
             return;
+
         }
+        Application.Current.Shutdown(0);
     }
 
-    public override bool IsKeyPressed(KeyEventArgs args)
-        => Keyboard.IsKeyDown(Key.LeftCtrl)
-        && Keyboard.IsKeyDown(Key.E);
+    protected override string Name => Constants.MenuOperationsSettings.Names.EXIT;
+
+    protected override string IconFileSource => Constants.IO.Images.Icons.ExitIcon;
+
 }

@@ -2,12 +2,6 @@
 
 internal class EditMenuOperation : MenuOperation
 {
-    public override string Name => Constants.MenuOperationsSettings.Names.EDIT;
-
-    public override string InputGestureText => string.Empty;
-
-    public override string IconFileSource => string.Empty;
-
     public override int DisplayOrder => Constants.MenuOperationsSettings.Orders.EDIT;
 
     public override List<MenuOperation> GroupOperations => new()
@@ -16,13 +10,10 @@ internal class EditMenuOperation : MenuOperation
         new PasteMenuOperation()
     };
 
-    public override void HandleEvent(MainWindow source)
-    {
-        
-    }
+    public override Key[] KeyBind => Array.Empty<Key>();
 
-    public override bool IsKeyPressed(KeyEventArgs args)
-    {
-        return false;
-    }
+    protected override string Name => Constants.MenuOperationsSettings.Names.EDIT;
+
+    protected override string IconFileSource => string.Empty;
+
 }

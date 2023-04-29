@@ -1,21 +1,20 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 using Graphics.Commands;
-using Graphics.Extensions;
 
 namespace Graphics.MenuOperations.EditMenuOperations;
 
 internal class PasteMenuOperation : MenuOperation
 {
-    public override string Name => Constants.MenuOperationsSettings.Names.PASTE;
-
-    public override string InputGestureText => Constants.MenuOperationsSettings.Keys.PASTE;
-
-    public override string IconFileSource => Constants.IO.Images.Icons.PasteIcon;
-
     public override int DisplayOrder => Constants.MenuOperationsSettings.Orders.PASTE;
 
     public override List<MenuOperation> GroupOperations => new();
+
+    public override Key[] KeyBind => new[] { Key.LeftCtrl, Key.V };
+
+    protected override string Name => Constants.MenuOperationsSettings.Names.PASTE;
+
+    protected override string IconFileSource => Constants.IO.Images.Icons.PasteIcon;
 
     public override void HandleEvent(MainWindow source)
     {
@@ -29,8 +28,4 @@ internal class PasteMenuOperation : MenuOperation
         Canvas.SetLeft(img, 0);
         source.Actions.Add(new AddPaintingAction(source, img, 0, 0));
     }
-
-    public override bool IsKeyPressed(KeyEventArgs args)
-        => Keyboard.IsKeyDown(Key.LeftCtrl)
-        && Keyboard.IsKeyDown(Key.V);
 }

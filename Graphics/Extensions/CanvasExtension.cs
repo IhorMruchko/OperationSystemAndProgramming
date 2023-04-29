@@ -3,17 +3,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Graphics.Extensions;
 
 public static class CanvasExtension
 {
-    public static void LoadImage(this Canvas canvas, string filePath, int left=0, int top=0)
+    public static void LoadImage(this Canvas canvas, MainWindow source, string filePath, int left=0, int top=0)
     {
         var image = filePath.CreateImage();
         Canvas.SetTop(image, top);
         Canvas.SetLeft(image, left);
+        image.Loaded += (_, _) => source.UpdateScrollBar();
         canvas.Children.Add(image);
     }
 
@@ -38,11 +38,6 @@ public static class CanvasExtension
         encoder.Save(fileStream);
     }
 
-    public static void Clear(this Canvas canvas)
-    {
-        canvas.Children.Clear();
-    }
-
     public static Point Move(this Canvas canvas, UIElement element, MouseEventArgs args, Point previousMousePositon)
     {
         var currentPositon = element.TransformToAncestor(canvas).Transform(args.GetPosition(element));
@@ -55,5 +50,14 @@ public static class CanvasExtension
         Canvas.SetTop(element, validator.NextPosition.Y);
 
         return currentPositon;
+    }
+
+    public static CroppedBitmap Crop(this Canvas canvas, FrameworkElement borders, double offset, bool shouldRemove = true)
+    {
+        var render = new RenderTargetBitmap((int)canvas.ActualWidth, (int)canvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
+        if (shouldRemove)
+            canvas.Children.Remove(borders);
+        render.Render(canvas);
+        return new CroppedBitmap(render, new Int32Rect((int)Canvas.GetLeft(borders), (int)(Canvas.GetTop(borders) + offset), (int)borders.ActualWidth, (int)borders.ActualHeight));
     }
 }

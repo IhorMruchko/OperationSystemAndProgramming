@@ -39,6 +39,7 @@ public static class Constants
 
                 private const string MOVE_ICON = "move.png";
                 private const string SELECT_ICON = "select.png";
+                private const string ROTATE_ICON = "rotate.png";
                 private const string LINE_ICON = "line.png";
                 private const string ELLIPSE_ICON = "ellipse.png";
                 private const string RECTANGLE_ICON = "rectangle.png";
@@ -66,8 +67,7 @@ public static class Constants
                 public static readonly string CopyIcon = Path.Combine(CurrentDirectory, ICONS_DIR, COPY_ICON);
                 public static readonly string PasteIcon = Path.Combine(CurrentDirectory, ICONS_DIR, PASTE_ICON);
                 public static readonly string SelectIcon = Path.Combine(CurrentDirectory, ICONS_DIR, SELECT_ICON);
-
-
+                public static readonly string RotateIcon = Path.Combine(CurrentDirectory, ICONS_DIR, ROTATE_ICON);
             }
         }
     }
@@ -98,6 +98,7 @@ public static class Constants
             public const string TOOLS = "Tools";
             public const string MOVER = "Move";
             public const string SELECT = "Select";
+            public const string ROTATE = "Rotate";
             public const string LINE = "Line";
             public const string ELLIPSE = "Ellipse";
             public const string RECTANGLE = "Rectangle";
@@ -134,9 +135,10 @@ public static class Constants
             public const int TOOLS = 4;
             public const int MOVER = 0;
             public const int SELECT = 1;
-            public const int LINE = 2;
-            public const int ELLIPSE = 3;
-            public const int RECTANGLE = 4;
+            public const int ROTATE = 2;
+            public const int LINE = 3;
+            public const int ELLIPSE = 4;
+            public const int RECTANGLE = 5;
 
             public const int PROPERTIES = 5;
             public const int LINE_COLOR = 1;
@@ -170,6 +172,7 @@ public static class Constants
             public const string LINE = "L";
             public const string ELLIPSE = "E";
             public const string RECTANGLE = "R";
+            public const string ROTATE = "Ctrl + R";
 
             public const string PROPERTIES = "";
             public const string LINE_COLOR = "Ctrl + L + C";

@@ -12,6 +12,8 @@ public class ActionsTracker
 
     public event Action? ChangesUndo;
 
+    public event Action? ChangeUndo;
+
     public bool IsMadeActions => _paintingAction.Any();
 
     public void Undo()
@@ -24,6 +26,7 @@ public class ActionsTracker
         var undoAction = _paintingAction.Pop();
         
         undoAction.Undo();
+        ChangeUndo?.Invoke();
         _undoActions.Push(undoAction); 
         
         if (_paintingAction.Any() == false)

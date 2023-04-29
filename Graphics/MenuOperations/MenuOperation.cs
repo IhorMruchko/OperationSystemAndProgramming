@@ -6,19 +6,22 @@ namespace Graphics.MenuOperations;
 
 public abstract class MenuOperation
 {
-    public abstract string Name { get; }
-    
-    public abstract string InputGestureText { get; }
-
-    public abstract string IconFileSource { get; }
-
     public abstract int DisplayOrder { get; }
+    
+    public virtual Key[] KeyBind { get; } = Array.Empty<Key>();
+    
+    protected abstract string Name { get; }
 
-    public abstract List<MenuOperation> GroupOperations { get; }
+    protected abstract string IconFileSource { get; }
 
-    public abstract bool IsKeyPressed(KeyEventArgs args);
-
-    public abstract void HandleEvent(MainWindow source);
+    public virtual List<MenuOperation> GroupOperations { get; } = new List<MenuOperation>();
+    
+    public virtual void HandleEvent(MainWindow source) { }
+    
+    protected string InputGestureText => string.Join(" + ", KeyBind);
+    
+    public bool IsKeyPressed() 
+        => KeyBind.All(key => Keyboard.IsKeyDown(key));
 
     internal MenuItem CreateMenuItem()
     {
@@ -37,4 +40,5 @@ public abstract class MenuOperation
         }
         return item;
     }
+
 }

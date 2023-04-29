@@ -6,15 +6,15 @@ namespace Graphics.MenuOperations.FileMenuOperations;
 
 internal class NewMenuOperation : MenuOperation
 {
-    public override string Name => Constants.MenuOperationsSettings.Names.NEW;
-
-    public override string InputGestureText => Constants.MenuOperationsSettings.Keys.NEW;
-
-    public override string IconFileSource => Constants.IO.Images.Icons.NewFileIcon;
-
     public override int DisplayOrder => Constants.MenuOperationsSettings.Orders.NEW;
 
     public override List<MenuOperation> GroupOperations => new();
+
+    public override Key[] KeyBind => new[] { Key.LeftCtrl, Key.N };
+
+    protected override string Name => Constants.MenuOperationsSettings.Names.NEW;
+
+    protected override string IconFileSource => Constants.IO.Images.Icons.NewFileIcon;
 
     public override void HandleEvent(MainWindow source)
     {
@@ -27,12 +27,7 @@ internal class NewMenuOperation : MenuOperation
         if (Messages.LastResult == MessageBoxResult.Cancel)
             return;
 
-        source.PaintingCanvas.Clear();
-        source.OpennedFile = null;
+        source.PaintingCanvas.Children.Clear();
         source.IsChangesMade = false;
     }
-
-    public override bool IsKeyPressed(KeyEventArgs args) 
-        => Keyboard.IsKeyDown(Key.LeftCtrl) 
-        && Keyboard.IsKeyDown(Key.N);
 }

@@ -2,11 +2,9 @@
 
 internal class ToolsMenuOperation : MenuOperation
 {
-    public override string Name => Constants.MenuOperationsSettings.Names.TOOLS;
+    protected override string Name => Constants.MenuOperationsSettings.Names.TOOLS;
 
-    public override string InputGestureText => Constants.MenuOperationsSettings.Keys.TOOLS;
-
-    public override string IconFileSource => string.Empty;
+    protected override string IconFileSource => string.Empty;
 
     public override int DisplayOrder => Constants.MenuOperationsSettings.Orders.TOOLS;
 
@@ -16,15 +14,7 @@ internal class ToolsMenuOperation : MenuOperation
         new MoveMenuOperation(),
         new DrawEllipseMenuOperation(),
         new DrawRectangleMenuOperation(),
-        new SelectMenuOperator()
+        new SelectMenuOperator(),
+        new RotateMenuOperation(),
     };
-
-    public override void HandleEvent(MainWindow source)
-    {
-    }
-
-    public override bool IsKeyPressed(KeyEventArgs args)
-    {
-        return false;
-    }
 }

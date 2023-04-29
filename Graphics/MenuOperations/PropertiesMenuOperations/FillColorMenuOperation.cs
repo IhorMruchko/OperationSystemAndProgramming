@@ -6,15 +6,13 @@ namespace Graphics.MenuOperations.PropertiesMenuOperations;
 
 internal class FillColorMenuOperation : MenuOperation
 {
-    public override string Name => Constants.MenuOperationsSettings.Names.FILL_COLOR;
-
-    public override string InputGestureText => Constants.MenuOperationsSettings.Keys.FILL_COLOR;
-
-    public override string IconFileSource => Constants.IO.Images.Icons.FillColorIcon;
-
     public override int DisplayOrder => Constants.MenuOperationsSettings.Orders.FILL_COLOR;
 
-    public override List<MenuOperation> GroupOperations => new();
+    public override Key[] KeyBind => new[] { Key.LeftCtrl, Key.F, Key.C };
+    
+    protected override string Name => Constants.MenuOperationsSettings.Names.FILL_COLOR;
+
+    protected override string IconFileSource => Constants.IO.Images.Icons.FillColorIcon;
 
     public override void HandleEvent(MainWindow source)
     {
@@ -24,9 +22,4 @@ internal class FillColorMenuOperation : MenuOperation
             ? colorDialog.Color.ToBrush()
             : Constants.Properties.DefaultFillColor;
     }
-
-    public override bool IsKeyPressed(KeyEventArgs args)
-        => Keyboard.IsKeyDown(Key.LeftCtrl)
-        && Keyboard.IsKeyDown(Key.F)
-        && Keyboard.IsKeyDown(Key.C);
 }

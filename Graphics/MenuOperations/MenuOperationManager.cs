@@ -11,7 +11,6 @@ namespace Graphics.MenuOperations;
 
 internal static class MenuOperationManager
 {
-    // TODO: Add edit menu operators.
     private static readonly List<MenuOperation> _operations = new()
     {
         new FileMenuOperation(),
@@ -34,8 +33,7 @@ internal static class MenuOperationManager
             result.Items.Add(node.CreateMenuItem());
     }
 
-    internal static void HandleEvent(MainWindow mainWindow, KeyEventArgs e)
-    {
-        AllOperations.OrderBy(t => t.DisplayOrder).FirstOrDefault(handler => handler.IsKeyPressed(e))?.HandleEvent(mainWindow);
-    }
+    internal static void HandleEvent(MainWindow mainWindow) 
+        => AllOperations.OrderByDescending(t => t.KeyBind.Length)
+            .FirstOrDefault(handler => handler.IsKeyPressed())?.HandleEvent(mainWindow);
 }

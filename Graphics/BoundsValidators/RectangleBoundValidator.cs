@@ -8,17 +8,12 @@ internal class RectangleBoundValidator : BoundValidator
 {
     public override bool IsOutOfBounds(UIElement element, Canvas canvas, Point currentPosition, Point previousPosition)
     {
-        var rectangle = (Rectangle)element;
-        var x = Canvas.GetLeft(rectangle) + currentPosition.X - previousPosition.X;
-        var y = Canvas.GetTop(rectangle) + currentPosition.Y - previousPosition.Y;
-        var right = x + rectangle.ActualWidth;
-        var bottom = y + rectangle.ActualHeight;
-
+        var x = Canvas.GetLeft(element) + currentPosition.X - previousPosition.X;
+        var y = Canvas.GetTop(element) + currentPosition.Y - previousPosition.Y;
+        
         NextPosition = new Point(x, y);
 
-        return right > canvas.ActualWidth
-            || bottom > canvas.ActualHeight
-            || y < 0
+        return y < 0 
             || x < 0;
     }
 

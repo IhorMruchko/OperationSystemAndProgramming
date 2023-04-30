@@ -1,4 +1,6 @@
-﻿namespace Graphics.MenuOperations.ToolsMenuOperations;
+﻿using Graphics.MenuOperations.ToolsMenuOperations.FilterToolsMenuOperations;
+
+namespace Graphics.MenuOperations.ToolsMenuOperations;
 
 internal class ToolsMenuOperation : MenuOperation
 {
@@ -16,5 +18,6 @@ internal class ToolsMenuOperation : MenuOperation
         new DrawRectangleMenuOperation(),
         new SelectMenuOperator(),
         new RotateMenuOperation(),
+        new FilterMenuOperation(),
     };
 }

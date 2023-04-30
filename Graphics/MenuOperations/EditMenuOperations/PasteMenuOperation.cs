@@ -23,9 +23,14 @@ internal class PasteMenuOperation : MenuOperation
         if (image is null) return;
 
         var img = new Image() { Source = image };
+        img.Loaded += (_, _) => source.UpdateScrollBar();
         source.PaintingCanvas.Children.Add(img);
-        Canvas.SetTop(img, 0);
-        Canvas.SetLeft(img, 0);
-        source.Actions.Add(new AddPaintingAction(source, img, 0, 0));
+        
+        Canvas.SetTop(img, source.ScrollBar.VerticalOffset);
+        Canvas.SetLeft(img, source.ScrollBar.HorizontalOffset);
+        source.Actions.Add(new AddPaintingAction(source,
+                                                 img,
+                                                 source.ScrollBar.VerticalOffset,
+                                                 source.ScrollBar.HorizontalOffset));
     }
 }

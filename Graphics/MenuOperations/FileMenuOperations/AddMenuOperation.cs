@@ -14,6 +14,8 @@ internal class AddMenuOperation : MenuOperation
 
     public override Key[] KeyBind => new[] { Key.LeftCtrl, Key.O };
 
+    protected override bool InsertSeparator => true;
+
     public override void HandleEvent(MainWindow source)
     {
         var openFileDialog = new OpenFileDialog()
@@ -24,6 +26,8 @@ internal class AddMenuOperation : MenuOperation
         if (openFileDialog.ShowDialog() == true)
         {
             source.PaintingCanvas.LoadImage(source, openFileDialog.FileName);
+            source.ScrollBar.ScrollToTop();
+            source.ScrollBar.ScrollToLeftEnd();
             source.Actions.Add(new AddPaintingAction(source, source.PaintingCanvas.Children[^1], 0, 0));
         }
     }

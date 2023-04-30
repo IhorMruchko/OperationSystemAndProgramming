@@ -11,14 +11,10 @@ internal class EllipseBoundValidator : BoundValidator
         var ellipse = (Ellipse)element;
         var x = Canvas.GetLeft(ellipse) + currentPosition.X - previousPosition.X;
         var y = Canvas.GetTop(ellipse) + currentPosition.Y - previousPosition.Y;
-        var right = x + ellipse.ActualWidth;
-        var bottom = y + ellipse.ActualHeight;
 
         NextPosition = new Point(x, y);
 
-        return right > canvas.ActualWidth
-            || bottom > canvas.ActualHeight
-            || y < 0
+        return y < 0
             || x < 0;
 
     }

@@ -11,15 +11,11 @@ internal class LineBoundValidator : BoundValidator
         var line = (Line)element;
         var x = Canvas.GetLeft(line) + currentPosition.X - previousPosition.X;
         var y = Canvas.GetTop(line) + currentPosition.Y - previousPosition.Y;
-        var right = x + line.ActualWidth;
-        var bottom = y + line.ActualHeight;
         
         NextPosition = new Point(x, y);
-        
+
         return x < 0 - Min(line.X1, line.X2)
-            || y < 0 - Min(line.Y1, line.Y2)
-            || right > canvas.ActualWidth
-            || bottom > canvas.ActualHeight;
+            || y < 0 - Min(line.Y1, line.Y2);
     }
 
     public override bool IsTargettingType(UIElement element)

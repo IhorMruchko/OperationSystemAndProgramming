@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Threading;
+using System.Windows;
 using Graphics.Extensions;
 
 namespace Graphics.MenuOperations.EditMenuOperations;
@@ -13,12 +15,27 @@ internal class CopyMenuOperation : MenuOperation
 
     protected override string IconFileSource => Constants.IO.Images.Icons.CopyIcon;
 
+    private MainWindow? Source { get; set; }
+
+    private (double Vertical, double Horizontal) Offsets { get; set; }
+
     public override void HandleEvent(MainWindow source)
     {
-        if (source.Selection is null) return;
+        Source = source;
+        source.ScrollBar.ScrollChanged += ScrollBar_ScrollChanged;
+        Offsets = (source.ScrollBar.VerticalOffset, source.ScrollBar.HorizontalOffset);
+        source.ScrollBar.ScrollToTop();
+        source.ScrollBar.ScrollToLeftEnd();
+        source.InvalidateVisual();       
+    }
 
-        Clipboard.SetImage(source.PaintingCanvas.Crop(source.Selection, source.OperationsMenu.ActualHeight));
-        
-        source.Selection = null;
+    private void ScrollBar_ScrollChanged(object sender, System.Windows.Controls.ScrollChangedEventArgs e)
+    {
+        if (Source is null || Source.Selection is null) return;
+        Clipboard.SetImage(Source.PaintingCanvas.Crop(Source.Selection));
+        Source.Selection = null;
+        Source.ScrollBar.ScrollChanged -= ScrollBar_ScrollChanged;
+        Source.ScrollBar.ScrollToVerticalOffset(Offsets.Vertical);
+        Source.ScrollBar.ScrollToHorizontalOffset(Offsets.Horizontal);
     }
 }

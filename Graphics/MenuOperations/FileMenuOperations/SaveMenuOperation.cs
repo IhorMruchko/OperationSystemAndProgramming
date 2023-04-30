@@ -15,6 +15,8 @@ internal class SaveMenuOperation : MenuOperation
 
     protected override string IconFileSource => Constants.IO.Images.Icons.SaveIcon;
 
+    protected override bool InsertSeparator => true;
+
     public override void HandleEvent(MainWindow source)
     {
         var saveFileDialog = new SaveFileDialog()

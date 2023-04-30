@@ -14,6 +14,8 @@ internal class FillColorMenuOperation : MenuOperation
 
     protected override string IconFileSource => Constants.IO.Images.Icons.FillColorIcon;
 
+    protected override bool InsertSeparator => true;
+
     public override void HandleEvent(MainWindow source)
     {
         var colorDialog = new ColorDialog();

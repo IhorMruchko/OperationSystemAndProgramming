@@ -12,6 +12,8 @@ internal class RotateMenuOperation : MenuOperation
 
     protected override string IconFileSource => Constants.IO.Images.Icons.RotateIcon;
 
+    protected override bool InsertSeparator => true;
+
     public override void HandleEvent(MainWindow source)
     {
         source.CurrentTool = new RotateTool();

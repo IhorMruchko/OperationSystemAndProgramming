@@ -12,7 +12,7 @@ public class DefaultBoundValidator : BoundValidator
         
         NextPosition = new Point(x, y);
 
-        return x < 0 || x > canvas.ActualWidth || y < 0 || y > canvas.ActualWidth;
+        return x < 0 || y < 0;
     }
 
     public override bool IsTargettingType(UIElement element)

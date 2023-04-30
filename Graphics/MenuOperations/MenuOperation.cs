@@ -1,6 +1,7 @@
 ﻿using Graphics.Extensions;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Graphics.MenuOperations;
 
@@ -19,7 +20,9 @@ public abstract class MenuOperation
     public virtual void HandleEvent(MainWindow source) { }
     
     protected string InputGestureText => string.Join(" + ", KeyBind);
-    
+
+    protected virtual bool InsertSeparator { get; } = false;
+
     public bool IsKeyPressed() 
         => KeyBind.All(key => Keyboard.IsKeyDown(key));
 
@@ -37,6 +40,8 @@ public abstract class MenuOperation
         foreach(var operation in GroupOperations.OrderBy(operation => operation.DisplayOrder))
         {
             item.Items.Add(operation.CreateMenuItem());
+            if (operation.InsertSeparator)
+                item.Items.Add(new Separator() { Height = 2, Foreground = Brushes.DarkSlateGray });
         }
         return item;
     }

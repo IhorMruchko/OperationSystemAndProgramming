@@ -23,6 +23,7 @@ internal class ExitMenuOperation : MenuOperation
             return;
 
         }
+        source.Closing -= source.Window_Closing;
         Application.Current.Shutdown(0);
     }
 

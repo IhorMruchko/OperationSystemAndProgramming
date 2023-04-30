@@ -15,7 +15,8 @@ internal class RotateTool : Tool
         
         image.LayoutTransform = new RotateTransform(degree);
         source.Actions.Add(new RotateAction(source, image, degree, direction));
-        
+
+        source.UpdateScrollBar();
         IsMouseDown = false;
     }
 

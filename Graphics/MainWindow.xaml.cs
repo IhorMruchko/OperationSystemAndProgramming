@@ -1,9 +1,9 @@
 ﻿using Graphics.Commands;
+using Graphics.Extensions;
 using Graphics.MenuOperations;
 using Graphics.MenuOperations.FileMenuOperations;
 using Graphics.Objects;
 using Graphics.Tools;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -56,11 +56,21 @@ public partial class MainWindow : Window
         }
 
         var (width, height) = e is null ? (ActualWidth, ActualHeight - OperationsMenu.ActualHeight) : (e.NewSize.Width, e.NewSize.Height - OperationsMenu.ActualHeight);
-        var (maxWidth, maxHeight) = (PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetLeft(element) + element.ActualWidth),
-            PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetTop(element) + element.ActualHeight));
+        var (maxWidth, maxHeight) = 
+            (PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetLeft(element) + element.GetWidth()),
+            PaintingCanvas.Children.OfType<FrameworkElement>().Max(element => Canvas.GetTop(element) + element.GetHeight()));
 
         PaintingCanvas.Width = maxWidth < width ? double.NaN : maxWidth;
         PaintingCanvas.Height = maxHeight < height ? double.NaN : maxHeight;
+    }
+
+    public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        new ExitMenuOperation().HandleEvent(this);
+        if (Messages.LastResult == MessageBoxResult.None)
+        {
+            e.Cancel = true;
+        }
     }
 
     private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -84,16 +94,6 @@ public partial class MainWindow : Window
     {
         Title = Constants.TITLE_EDIT;
         UpdateScrollBar();
-    }
-
-    private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-    {
-        new ExitMenuOperation().HandleEvent(this);
-        if (Messages.LastResult == MessageBoxResult.Cancel)
-        {
-            e.Cancel = true;
-        }
-        Messages.LastResult = MessageBoxResult.None;
     }
 
     private void Window_SizeChanged(object sender, SizeChangedEventArgs e) 

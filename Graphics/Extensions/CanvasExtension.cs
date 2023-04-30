@@ -1,8 +1,10 @@
 ﻿using Graphics.BoundsValidators;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace Graphics.Extensions;
 
@@ -52,12 +54,18 @@ public static class CanvasExtension
         return currentPositon;
     }
 
-    public static CroppedBitmap Crop(this Canvas canvas, FrameworkElement borders, double offset, bool shouldRemove = true)
+    public static CroppedBitmap Crop(this Canvas canvas, Rectangle borders)
     {
         var render = new RenderTargetBitmap((int)canvas.ActualWidth, (int)canvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
-        if (shouldRemove)
-            canvas.Children.Remove(borders);
+        canvas.Children.Remove(borders);
         render.Render(canvas);
-        return new CroppedBitmap(render, new Int32Rect((int)Canvas.GetLeft(borders), (int)(Canvas.GetTop(borders) + offset), (int)borders.ActualWidth, (int)borders.ActualHeight));
+        Debug.WriteLine(canvas.IsLoaded);
+        Debug.WriteLine(render.Width);
+        Debug.WriteLine(render.Height);
+        Debug.WriteLine($"{Canvas.GetLeft(borders)}, {Canvas.GetTop(borders)} {borders.ActualWidth}, {borders.ActualHeight}");
+        return new CroppedBitmap(render, new Int32Rect((int)Canvas.GetLeft(borders),
+                                                       (int)Canvas.GetTop(borders),
+                                                       (int)borders.ActualWidth,
+                                                       (int)borders.ActualHeight));
     }
 }

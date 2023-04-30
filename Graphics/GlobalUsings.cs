@@ -40,6 +40,13 @@ public static class Constants
                 private const string MOVE_ICON = "move.png";
                 private const string SELECT_ICON = "select.png";
                 private const string ROTATE_ICON = "rotate.png";
+                
+                private const string FILTER_ICON = "filter.png";
+                private const string GRAYSCALE_ICON = "grayscale.png";
+                private const string GAUSIAN_SHARPEN_ICON = "gaussian.png";
+                private const string GITTER_ICON = "jitter.png";
+                private const string WAVE_ICON = "wave.png";
+                
                 private const string LINE_ICON = "line.png";
                 private const string ELLIPSE_ICON = "ellipse.png";
                 private const string RECTANGLE_ICON = "rectangle.png";
@@ -68,6 +75,12 @@ public static class Constants
                 public static readonly string PasteIcon = Path.Combine(CurrentDirectory, ICONS_DIR, PASTE_ICON);
                 public static readonly string SelectIcon = Path.Combine(CurrentDirectory, ICONS_DIR, SELECT_ICON);
                 public static readonly string RotateIcon = Path.Combine(CurrentDirectory, ICONS_DIR, ROTATE_ICON);
+                public static readonly string FilterIcon = Path.Combine(CurrentDirectory, ICONS_DIR, FILTER_ICON);
+                public static readonly string GausianSharpenIcon = Path.Combine(CurrentDirectory, ICONS_DIR, GAUSIAN_SHARPEN_ICON);
+                public static readonly string JitterIcon = Path.Combine(CurrentDirectory, ICONS_DIR, GITTER_ICON);
+                public static readonly string GrayscaleIcon = Path.Combine(CurrentDirectory, ICONS_DIR, GRAYSCALE_ICON);
+                public static readonly string WaterWaveIcon = Path.Combine(CurrentDirectory, ICONS_DIR, WAVE_ICON);
+
             }
         }
     }
@@ -99,6 +112,13 @@ public static class Constants
             public const string MOVER = "Move";
             public const string SELECT = "Select";
             public const string ROTATE = "Rotate";
+            
+            public const string FILTER = "Filters";
+            public const string GRAYSCALE = "Gray scale";
+            public const string GAUSIAN_SHARPEN = "Gaussian Sharpen";
+            public const string JITTER = "Jitter";
+            public const string WAVE_FILTER = "Waves";
+
             public const string LINE = "Line";
             public const string ELLIPSE = "Ellipse";
             public const string RECTANGLE = "Rectangle";
@@ -136,48 +156,22 @@ public static class Constants
             public const int MOVER = 0;
             public const int SELECT = 1;
             public const int ROTATE = 2;
-            public const int LINE = 3;
-            public const int ELLIPSE = 4;
-            public const int RECTANGLE = 5;
+            
+            public const int FILTER = 3;
+            public const int GRAYSCALE = 1;
+            public const int GAUSIAN_SHARPEN = 2;
+            public const int JITTER = 3;
+            public const int WAVE_FILTER = 4;
+
+
+            public const int LINE = 4;
+            public const int ELLIPSE = 5;
+            public const int RECTANGLE = 6;
 
             public const int PROPERTIES = 5;
             public const int LINE_COLOR = 1;
             public const int FILL_COLOR = 2;
             public const int THICKNESS = 3;
-        }
-
-        public static class Keys
-        {
-            public const string FILE = "";
-            public const string NEW = "Ctrl + N";
-            public const string ADD = "Ctrl + O";
-            public const string OPEN = "Ctrl + Shift + O";
-            public const string SAVE = "Ctrl + S";
-            public const string EXIT = "Ctrl + E";
-
-            public const string EDIT = "";
-            public const string CUT = "Ctrl + X";
-            public const string COPY = "Ctrl + C";
-            public const string PASTE = "Ctrl + V";
-            public const string DELETE = "del";
-            public const string SELECT_ALL = "Ctrl + A";
-
-            public const string ACTIONS = "";
-            public const string UNDO = "Ctrl + Z";
-            public const string REDO = "Ctrl + Y";
-
-            public const string TOOLS = "";
-            public const string MOVER = "M";
-            public const string SELECT = "S";
-            public const string LINE = "L";
-            public const string ELLIPSE = "E";
-            public const string RECTANGLE = "R";
-            public const string ROTATE = "Ctrl + R";
-
-            public const string PROPERTIES = "";
-            public const string LINE_COLOR = "Ctrl + L + C";
-            public const string FILL_COLOR = "Ctrl + F + C";
-            public const string THICKNESS = "Ctrl + T";
         }
     }
 

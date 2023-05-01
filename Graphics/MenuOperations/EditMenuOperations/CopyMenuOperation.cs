@@ -24,12 +24,17 @@ internal class CopyMenuOperation : MenuOperation
         Source = source;
         source.ScrollBar.ScrollChanged += ScrollBar_ScrollChanged;
         Offsets = (source.ScrollBar.VerticalOffset, source.ScrollBar.HorizontalOffset);
+        if (Offsets.Vertical == 0 && Offsets.Horizontal == 0)
+        {
+            ScrollBar_ScrollChanged(null, null);
+            return;
+        }
         source.ScrollBar.ScrollToTop();
         source.ScrollBar.ScrollToLeftEnd();
         source.InvalidateVisual();       
     }
 
-    private void ScrollBar_ScrollChanged(object sender, System.Windows.Controls.ScrollChangedEventArgs e)
+    private void ScrollBar_ScrollChanged(object? sender, System.Windows.Controls.ScrollChangedEventArgs? e)
     {
         if (Source is null || Source.Selection is null) return;
         Clipboard.SetImage(Source.PaintingCanvas.Crop(Source.Selection));
@@ -37,5 +42,6 @@ internal class CopyMenuOperation : MenuOperation
         Source.ScrollBar.ScrollChanged -= ScrollBar_ScrollChanged;
         Source.ScrollBar.ScrollToVerticalOffset(Offsets.Vertical);
         Source.ScrollBar.ScrollToHorizontalOffset(Offsets.Horizontal);
+        Source.InvalidateVisual();
     }
 }
